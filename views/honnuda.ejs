@@ -1,0 +1,37 @@
+<%- include('header') -%>
+
+<h1>Hönnuðahittingur í mars</h1>
+Spennandi hittingur hönnuða í Hönnunarmars
+
+<h2>Skráningar á viðburð</h2>
+Engin hefur skráð sig á þennan við burð
+
+<h2>Skráður þig</h2>
+
+<form method="post" action="/" enctype="application/x-www-form-urlencoded" class="form form--separated">
+
+    <div class="field<%= locals.isInvalid('name', errors) ?  ' field--invalid' : '' %>">
+        <label for="name">Nafn*:</label>
+        <input type="text" name="name" id="name" value="<%= formData.name %>" class="">
+    </div>
+
+    <div class="field field--textarea<%= locals.isInvalid('comment', errors) ?  ' field--invalid' : '' %>">
+        <label for="comment">Lýsing*:</label>
+        <textarea name="comment" id="comment"><%= formData.comment %></textarea>
+    </div>
+
+    <% if (errors.length > 0) { %>
+        <h2 class="errors__title">Villur við undirskrift:</h2>
+        <ul class="errors">
+          <% errors.forEach((error) => { %>
+            <li class="error"><label for="<%= error.param %>"><%= error.msg %></label></li>
+          <% }); %>
+        </ul>
+      <% } %>
+    
+      <button class="button button--large button--margin">Skrá viðburð</button>
+    </form>
+
+    <a href="/">Til baka</a>
+
+<%- include('footer') -%>
